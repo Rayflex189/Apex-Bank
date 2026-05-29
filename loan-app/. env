@@ -1,0 +1,11 @@
+PORT=3000
+NODE_ENV=development
+MONGODB_URI=mongodb+srv://your_username:your_password@cluster.mongodb.net/loan_app
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+SESSION_SECRET=your-session-secret-key
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+APP_NAME=Apex Trust Bank
+APP_URL=http://localhost:3000
