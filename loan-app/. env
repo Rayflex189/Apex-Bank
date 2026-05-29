@@ -1,11 +1,36 @@
+# Server Configuration
 PORT=3000
 NODE_ENV=development
-MONGODB_URI=mongodb+srv://your_username:your_password@cluster.mongodb.net/loan_app
+
+# Database
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/loan_app
+
+# JWT Authentication
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_EXPIRE=7d
 SESSION_SECRET=your-session-secret-key
+
+# Email Configuration
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-password
+EMAIL_FROM=noreply@apextrustbank.com
+
+# App Configuration
 APP_NAME=Apex Trust Bank
 APP_URL=http://localhost:3000
+APP_LOGO_URL=/images/logo.png
+
+# Cloudinary (for image uploads)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# File Upload
+MAX_FILE_SIZE=5242880
+ALLOWED_FILE_TYPES=image/jpeg,image/png,image/jpg
