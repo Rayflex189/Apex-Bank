@@ -1,5 +1,5 @@
 {
-  "name": "loan-management-system",
+  "name": "loan-app",
   "version": "1.0.0",
   "description": "Apex Trust Bank - Loan Management System",
   "main": "server.js",
