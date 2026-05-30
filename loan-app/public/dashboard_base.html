@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Trust Bank - Dashboard</title>
+    <!-- Chart.js, Font Awesome, Google Fonts, Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tawk.to Chat -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69cb625ecfacab1c39445bca/1jl17gh81';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    
+    <style>
+        /* base styles */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI',sans-serif; line-height:1.6; color:#333; background:#f8fafc; }
+        .container { width:90%; max-width:1200px; margin:0 auto; padding:0 15px; }
+        .btn { display:inline-block; background:#0a4b7a; color:white; padding:10px 24px; border-radius:5px; text-decoration:none; font-weight:600; transition:background 0.3s; border:none; cursor:pointer; font-size:0.95rem; }
+        .btn:hover { background:#0e5f9e; }
+        .btn-outline { background:transparent; border:2px solid #0a4b7a; color:#0a4b7a; }
+        .btn-outline:hover { background:#0a4b7a; color:white; }
+        .section-title { font-size:2rem; color:#0a4b7a; margin-bottom:1rem; text-align:center; }
+
+        /* header */
+        header { background:white; box-shadow:0 2px 10px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
+        nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; }
+
+        /* redesigned logo */
+        .logo a {
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-size:2rem;
+            font-weight:700;
+            text-decoration:none;
+            color:#1a3b5c;
+            font-family:'Montserrat',sans-serif;
+        }
+        .logo-icon {
+            background: linear-gradient(145deg, #1e4b7a, #0a2f4f);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,40,80,0.2);
+        }
+        .logo-text {
+            background: linear-gradient(135deg, #1e3b5c, #2b5a8c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* desktop menu */
+        .desktop-menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a4b7a;
+            background: none;
+            border: none;
+            padding: 0 0.5rem;
+        }
+        .desktop-menu-toggle:hover { color: #0e5f9e; }
+
+        .desktop-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+            transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 200;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+        }
+        .desktop-menu.open { right: 0; }
+        .desktop-menu .close-btn {
+            text-align: right;
+            font-size: 2rem;
+            color: #7b8ba3;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+        }
+        .desktop-menu ul { list-style: none; }
+        .desktop-menu li { margin-bottom: 1.2rem; }
+        .desktop-menu a {
+            text-decoration: none;
+            color: #1f3b5c;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #eef2f6;
+            transition: color 0.2s;
+        }
+        .desktop-menu a:hover { color: #0a4b7a; }
+        .desktop-menu .user-row {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eef2f6;
+        }
+        .desktop-menu .user-row i { font-size: 1.8rem; color: #0a4b7a; }
+        .desktop-menu .user-row span { font-weight: 600; }
+        .desktop-menu .logout-btn {
+            background: #e4eef9;
+            color: #0a4b7a;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 40px;
+            margin-top: 1rem;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background: white;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+            transition: left 0.3s;
+            z-index: 200;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+        }
+        .mobile-menu.open { left: 0; }
+        .mobile-menu .close-btn {
+            text-align: right;
+            font-size: 2rem;
+            color: #7b8ba3;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+        }
+        .mobile-menu ul { list-style: none; }
+        .mobile-menu li { margin-bottom: 1.2rem; }
+        .mobile-menu a {
+            text-decoration: none;
+            color: #1f3b5c;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+        .mobile-menu a:hover { color: #0a4b7a; }
+        .mobile-menu .user-row {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eef2f6;
+        }
+        .mobile-menu .user-row i { font-size: 1.8rem; color: #0a4b7a; }
+        .mobile-menu .user-row span { font-weight: 600; }
+        .mobile-menu .logout-btn {
+            background: #e4eef9;
+            color: #0a4b7a;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 40px;
+            margin-top: 1rem;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* overlay */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 150;
+        }
+        .menu-overlay.active { display: block; }
+
+        /* loading spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #0a4b7a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* footer */
+        footer {
+            background: #1f2e3a;
+            color: #cfddee;
+            padding: 3rem 0 1.5rem;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .footer-links a { color: #cfddee; text-decoration: none; }
+        .footer-links a:hover { color: white; }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #3a4c5c;
+            font-size: 0.9rem;
+        }
+
+        /* responsive */
+        @media (min-width: 769px) {
+            .hamburger { display: none; }
+            .desktop-menu-toggle { display: block; }
+        }
+        @media (max-width: 768px) {
+            .desktop-menu-toggle { display: none; }
+            .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: #0a4b7a; background: none; border: none; padding: 0 0.5rem; }
+        }
+
+        .staff-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #2A6EBB;
+        }
+        .staff-header {
+            color: #2A6EBB;
+            font-weight: bold;
+            padding: 10px 15px;
+            background: rgba(42, 110, 187, 0.1);
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        
+        /* Toast notifications */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 8px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .toast-success { border-left: 4px solid #1e9c50; }
+        .toast-error { border-left: 4px solid #c83a3a; }
+        .toast-info { border-left: 4px solid #0a4b7a; }
+    </style>
+    <style id="dynamic-styles"></style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/">
+                        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span class="logo-text">Apex Trust Bank</span>
+                    </a>
+                </div>
+                <button class="desktop-menu-toggle" id="desktopMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="hamburger" id="hamburgerBtn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- DESKTOP slide-out menu -->
+    <div class="desktop-menu" id="desktopMenu">
+        <div class="close-btn" id="closeDesktopBtn">&times;</div>
+        <ul>
+            <li><a href="/apply-loan">Loans</a></li>
+            <li><a href="/apply-card">Apply for Card</a></li>
+            <li><a href="/investment-dashboard">Investments</a></li>
+            <li><a href="/investments">Create investment</a></li>
+            <li><a href="/card-list">Cards</a></li>
+        </ul>
+        <div id="staffMenuSection" style="display: none;">
+            <div class="staff-section">
+                <div class="staff-header">
+                    <i class="fas fa-shield-alt"></i> Staff Panel
+                </div>
+            </div>
+            <ul>
+                <li><a href="/manage-loans"><i class="fas fa-file-invoice-dollar"></i> Manage Loans</a></li>
+                <li><a href="/admin-dashboard"><i class="fas fa-cogs"></i> Admin Panel</a></li>
+            </ul>
+        </div>
+        <div class="user-row" id="userInfo">
+            <i class="far fa-user-circle"></i>
+            <span id="userName">Loading...</span>
+        </div>
+        <button class="logout-btn" onclick="Auth.logout()">Logout</button>
+    </div>
+
+    <!-- MOBILE slide-out menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" id="closeMenuBtn">&times;</div>
+        <ul>
+            <li><a href="/apply-loan">Loan</a></li>
+            <li><a href="/apply-card">Apply for Card</a></li>
+            <li><a href="/investments">Investment</a></li>
+            <li><a href="/card-list">Cards</a></li>
+            <li><a href="/investment-dashboard">Investment Dashboard</a></li>
+        </ul>
+        <div class="user-row" id="mobileUserInfo">
+            <i class="far fa-user-circle"></i>
+            <span id="mobileUserName">Loading...</span>
+        </div>
+        <button class="logout-btn" onclick="Auth.logout()">Logout</button>
+    </div>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <main>
+        <div id="app-content">
+            <!-- Dynamic content will be loaded here -->
+            <div class="container" style="text-align: center; padding: 50px;">
+                <div class="loading-spinner"></div>
+                <p>Loading dashboard...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <a href="/" style="color: white; background: none; -webkit-background-clip: unset; background-clip: unset; color: #fff;">Apex Trust Bank</a>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy</a></li>
+                    <li><a href="/security">Security</a></li>
+                    <li><a href="/location">Locations</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Apex Trust Bank. All rights reserved. Member FDIC. Equal Housing Lender. <i class="fas fa-dollar-sign" style="margin-left: 6px;"></i> USD balances</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/dashboard.js"></script>
+    
+    <script>
+        // Menu functionality
+        (function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeMobileBtn = document.getElementById('closeMenuBtn');
+            const desktopToggle = document.getElementById('desktopMenuToggle');
+            const desktopMenu = document.getElementById('desktopMenu');
+            const closeDesktopBtn = document.getElementById('closeDesktopBtn');
+            const overlay = document.getElementById('menuOverlay');
+
+            function openMobile() {
+                mobileMenu.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMobile() {
+                mobileMenu.classList.remove('open');
+                if (!desktopMenu.classList.contains('open')) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+            function openDesktop() {
+                desktopMenu.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeDesktop() {
+                desktopMenu.classList.remove('open');
+                if (!mobileMenu.classList.contains('open')) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+            function closeAll() {
+                mobileMenu.classList.remove('open');
+                desktopMenu.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (hamburger) hamburger.addEventListener('click', openMobile);
+            if (closeMobileBtn) closeMobileBtn.addEventListener('click', closeMobile);
+            if (desktopToggle) desktopToggle.addEventListener('click', openDesktop);
+            if (closeDesktopBtn) closeDesktopBtn.addEventListener('click', closeDesktop);
+            if (overlay) overlay.addEventListener('click', closeAll);
+
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (mobileMenu.classList.contains('open') || desktopMenu.classList.contains('open')) {
+                        closeAll();
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+      </html>
