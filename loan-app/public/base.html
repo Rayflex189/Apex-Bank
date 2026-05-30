@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Trust Bank | Personal Banking</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a4b7a">
+    
+    <!-- Tawk.to Chat Script -->
+    <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function() {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/69cb625ecfacab1c39445bca/1jl17gh81';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* === Modern CSS Reset & Base Styles === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #f8fafc; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .btn { display: inline-block; background: #0a4b7a; color: white; padding: 10px 24px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: background 0.3s; border: none; cursor: pointer; }
+        .btn:hover { background: #0e5f9e; }
+        .btn-outline { background: transparent; border: 2px solid #0a4b7a; color: #0a4b7a; }
+        .btn-outline:hover { background: #0a4b7a; color: white; }
+        .section-title { font-size: 2rem; color: #0a4b7a; margin-bottom: 1rem; text-align: center; }
+        .section-subtitle { text-align: center; color: #555; max-width: 700px; margin: 0 auto 3rem auto; }
+
+        /* === Header & Navigation === */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        /* redesigned logo */
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1a3b5c;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .logo-icon {
+            background: linear-gradient(145deg, #1e4b7a, #0a2f4f);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,40,80,0.2);
+        }
+        .logo-text {
+            background: linear-gradient(135deg, #1e3b5c, #2b5a8c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* desktop toggle */
+        .desktop-menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a4b7a;
+            background: none;
+            border: none;
+            padding: 0 0.5rem;
+        }
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #0a4b7a;
+            background: none;
+            border: none;
+            padding: 0 0.5rem;
+        }
+
+        /* Sidebar overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* Slide-out menu */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+        }
+        .sidebar-menu.active {
+            right: 0;
+        }
+        .sidebar-menu .close-btn {
+            font-size: 2rem;
+            text-align: right;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            color: #0a4b7a;
+        }
+        .sidebar-menu ul {
+            list-style: none;
+        }
+        .sidebar-menu li {
+            margin-bottom: 1.5rem;
+        }
+        .sidebar-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eaeef2;
+        }
+        .sidebar-menu a:hover {
+            color: #0a4b7a;
+        }
+        .sidebar-menu .btn {
+            display: block;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Auth buttons in sidebar */
+        .auth-buttons {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eaeef2;
+        }
+
+        /* User info in sidebar */
+        .user-info {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eaeef2;
+            display: none;
+        }
+        .user-info.show {
+            display: block;
+        }
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0a4b7a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .user-avatar i {
+            font-size: 2rem;
+            color: white;
+        }
+        .user-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .user-email {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* === Footer === */
+        footer {
+            background-color: #1f2e3a;
+            color: #cfddee;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #cfddee;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #3a4c5c;
+            font-size: 0.9rem;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0a4b7a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Toast Notifications */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 8px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .toast-success { border-left: 4px solid #28a745; }
+        .toast-error { border-left: 4px solid #dc3545; }
+        .toast-info { border-left: 4px solid #0a4b7a; }
+        .toast-warning { border-left: 4px solid #ffc107; }
+
+        /* Responsive */
+        @media (min-width: 769px) {
+            .desktop-menu-toggle { display: block; }
+            .mobile-menu-toggle { display: none; }
+        }
+        @media (max-width: 768px) {
+            .desktop-menu-toggle { display: none; }
+            .mobile-menu-toggle { display: block; }
+            .hero-content { flex-direction: column; text-align: center; }
+            .features-container { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+    <!-- Extra CSS block for page-specific styles -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/">
+                        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span class="logo-text">Apex Trust Bank</span>
+                    </a>
+                </div>
+                <button class="desktop-menu-toggle" id="desktopMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Slide-out sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="close-btn" id="closeBtn">✕</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/checking">Checking</a></li>
+            <li><a href="/savings">Savings</a></li>
+            <li><a href="/lending">Lending</a></li>
+            <li><a href="/rates">Rates</a></li>
+        </ul>
+        
+        <!-- Auth buttons (shown when not logged in) -->
+        <div class="auth-buttons" id="authButtons">
+            <a href="/register" class="btn" style="margin: 1rem 0; display: block;">Register</a>
+            <a href="/login" class="btn btn-outline" style="display: block; text-align: center;">Login</a>
+        </div>
+        
+        <!-- User info (shown when logged in) -->
+        <div class="user-info" id="userInfo">
+            <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="user-name" id="sidebarUserName">Loading...</div>
+            <div class="user-email" id="sidebarUserEmail">Loading...</div>
+            <a href="/dashboard" class="btn" style="display: block; text-align: center; margin-bottom: 0.5rem;">Dashboard</a>
+            <a href="/profile" class="btn btn-outline" style="display: block; text-align: center; margin-bottom: 0.5rem;">Profile</a>
+            <button onclick="handleLogout()" class="btn" style="background: #dc3545; display: block; text-align: center;">Logout</button>
+        </div>
+    </div>
+
+    <br><br>
+
+    <!-- Main content area -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <a href="/" style="color: white;">Apex Trust Bank</a>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy</a></li>
+                    <li><a href="/security">Security</a></li>
+                    <li><a href="/location">Locations</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Apex Trust Bank. All rights reserved. Member FDIC. Equal Housing Lender.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/auth.js"></script>
+    <script>
+        // Menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const desktopToggle = document.getElementById('desktopMenuToggle');
+            const sidebar = document.getElementById('sidebarMenu');
+            const overlay = document.getElementById('sidebarOverlay');
+            const closeBtn = document.getElementById('closeBtn');
+
+            function openMenu() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileToggle) mobileToggle.addEventListener('click', openMenu);
+            if (desktopToggle) desktopToggle.addEventListener('click', openMenu);
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+        });
+
+        // Auth state management
+        async function updateAuthUI() {
+            const authButtons = document.getElementById('authButtons');
+            const userInfo = document.getElementById('userInfo');
+            
+            if (Auth.isAuthenticated()) {
+                try {
+                    const userData = await Auth.getUser();
+                    if (userData && userData.success) {
+                        authButtons.style.display = 'none';
+                        userInfo.classList.add('show');
+                        document.getElementById('sidebarUserName').textContent = 
+                            `${userData.profile.firstName || ''} ${userData.profile.lastName || ''}`.trim() || userData.user.email;
+                        document.getElementById('sidebarUserEmail').textContent = userData.user.email;
+                    }
+                } catch (error) {
+                    console.error('Error loading user:', error);
+                    authButtons.style.display = 'block';
+                    userInfo.classList.remove('show');
+                }
+            } else {
+                authButtons.style.display = 'block';
+                userInfo.classList.remove('show');
+            }
+        }
+
+        async function handleLogout() {
+            await Auth.logout();
+            updateAuthUI();
+            window.location.href = '/';
+        }
+
+        // Update UI on page load
+        document.addEventListener('DOMContentLoaded', updateAuthUI);
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
